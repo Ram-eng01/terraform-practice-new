@@ -1,8 +1,18 @@
-resource "aws_instance" "terraform" {
-    ami = "ami-068c0051b15cdb816"
-    instance_type = var.environment == "dev" ? "t3.micro" : "t2.micro"
-    tags = {
-        Name = "terraform"
-        Terraform = "true"
-    }
+provider "aws" {
+  region = "us-east-1"
 }
+
+
+
+
+resource "aws_instance" "us-instance" {
+  ami                    = "ami-069e612f612be3a2b"
+  instance_type          = "t2.micro"
+  key_name               = "docker_2.key"
+  vpc_security_group_ids = ["sg-04403eabf335339a8"]
+
+  tags = {
+    Name = "ram-instance"
+  }
+}
+
